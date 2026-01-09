@@ -1,92 +1,147 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<title>Digital Card</title>
+<title>यज्ञोपवीत संस्कार</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
     body {
         margin: 0;
-        height: 100vh;
+        min-height: 100vh;
+        background: radial-gradient(circle at top, #fff6e5, #f2d7a0);
+        font-family: "Noto Serif Devanagari", serif;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        font-family: 'Segoe UI', sans-serif;
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     .card {
-        background: white;
-        width: 320px;
-        padding: 30px;
-        border-radius: 20px;
+        max-width: 380px;
+        background: #fffaf0;
+        border: 2px solid #d4a017;
+        border-radius: 22px;
+        padding: 28px 22px;
         text-align: center;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        animation: popIn 1.2s ease forwards;
-        transform: scale(0.7);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        animation: appear 1.8s ease forwards;
         opacity: 0;
+        transform: translateY(30px);
     }
 
-    @keyframes popIn {
+    @keyframes appear {
         to {
-            transform: scale(1);
             opacity: 1;
+            transform: translateY(0);
         }
     }
 
+    .om {
+        font-size: 36px;
+        color: #b36b00;
+        animation: glow 2.5s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 6px #ffcc66; }
+        to { text-shadow: 0 0 14px #ff9900; }
+    }
+
     h1 {
-        margin: 10px 0;
-        color: #333;
-        animation: slideDown 1s ease forwards;
+        font-size: 22px;
+        margin: 14px 0 6px;
+        color: #7a3e00;
     }
 
-    @keyframes slideDown {
-        from { transform: translateY(-20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+    .divider {
+        width: 80px;
+        height: 2px;
+        background: #c0892b;
+        margin: 12px auto;
     }
 
-    p {
-        color: #555;
-        animation: fadeIn 1.8s ease forwards;
+    .mantra {
+        font-size: 15px;
+        color: #4a2c00;
+        line-height: 1.8;
+        margin: 16px 0;
+        animation: fadeIn 3s ease forwards;
+        opacity: 0;
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; }
         to { opacity: 1; }
     }
 
-    button {
-        margin-top: 20px;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 25px;
-        background: #667eea;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        transition: transform 0.3s, background 0.3s;
+    .details {
+        font-size: 14px;
+        color: #5c3a00;
+        margin-top: 14px;
+        line-height: 1.7;
     }
 
-    button:hover {
-        background: #764ba2;
-        transform: scale(1.08);
+    .footer {
+        margin-top: 18px;
+        font-size: 13px;
+        color: #7a4b00;
+        font-style: italic;
+    }
+
+    .bell {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 22px;
+        cursor: pointer;
     }
 </style>
 </head>
 
 <body>
 
+<div class="bell" onclick="playBell()">🔔</div>
+
 <div class="card">
-    <h1>🎉 Happy Birthday 🎉</h1>
-    <p>Wishing you happiness, success,<br>and endless smiles!</p>
-    <button onclick="surprise()">Click for Surprise</button>
+
+    <div class="om">ॐ</div>
+
+    <h1>यज्ञोपवीत संस्कार</h1>
+    <div class="divider"></div>
+
+    <div class="mantra">
+        ॐ यज्ञोपवीतं परमं पवित्रं  
+        प्रजापतेर्यत्सहजं पुरस्तात् ।<br>
+        आयुष्यमग्र्यं प्रतिमुञ्च शुभ्रं  
+        यज्ञोपवीतं बलमस्तु तेजः ॥
+    </div>
+
+    <div class="details">
+        ब्रह्मचर्याश्रमस्य प्रारम्भे<br>
+        वेदाध्ययनाधिकारप्राप्त्यर्थं<br>
+        शुभं यज्ञोपवीत धारण संस्कारः
+    </div>
+
+    <div class="mantra">
+        ॐ गायत्र्यै विद्महे  
+        सावित्रीं धीमहि ।<br>
+        तन्नो देवः प्रचोदयात् ॥
+    </div>
+
+    <div class="footer">
+        धर्मेण जीवनं — वेदेन बुद्धिः
+    </div>
+
 </div>
 
+<audio id="bellSound">
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4b40b02c6a.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-    function surprise() {
-        alert("✨ Have an amazing year ahead! ✨");
+    function playBell() {
+        document.getElementById("bellSound").play();
     }
 </script>
 
