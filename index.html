@@ -6,200 +6,176 @@
 <title>यज्ञोपवीत संस्कार</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ================= FONTS ================= -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* ================= ROOT VARIABLES ================= */
-:root {
-    --saffron: #c47a00;
-    --deep-saffron: #8a4f00;
-    --gold: #e6b566;
-    --bg-light: #fff7e2;
-    --bg-dark: #f2d199;
-    --brown: #4a2c00;
+/* ================= ROOT ================= */
+:root{
+    --gold:#e0b35b;
+    --saffron:#b86a00;
+    --deep:#4a2c00;
+    --bg1:#120c02;
+    --bg2:#f3d7a2;
 }
 
 /* ================= GLOBAL ================= */
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:radial-gradient(circle,var(--bg2),#cfae70);
+    font-family:"Noto Serif Devanagari",serif;
+    overflow:hidden;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    background: radial-gradient(circle at top, var(--bg-light), var(--bg-dark));
-    font-family: "Noto Serif Devanagari", serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-x: hidden;
+/* ================= INTRO SCREEN ================= */
+#intro{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle,#1b1204,#000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:10;
+    flex-direction:column;
+    color:var(--gold);
+    text-align:center;
+}
+
+.intro-text{
+    font-size:20px;
+    max-width:80%;
+    opacity:0;
+    animation:fadeUp 3s forwards;
+}
+
+.intro-text.delay{
+    animation-delay:3s;
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+/* ================= GOLD PARTICLES ================= */
+.particle{
+    position:absolute;
+    top:-20px;
+    width:6px;
+    height:6px;
+    background:radial-gradient(circle,var(--gold),transparent);
+    border-radius:50%;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{transform:translateY(110vh)}
 }
 
 /* ================= MAIN CARD ================= */
-.card {
-    width: 92%;
-    max-width: 420px;
-    background: #fffdf7;
-    border-radius: 26px;
-    padding: 32px 22px 36px;
-    border: 2px solid var(--gold);
-    box-shadow: 0 25px 55px rgba(0,0,0,0.35);
-    text-align: center;
-    position: relative;
-    animation: cardEntry 2s ease forwards;
-    opacity: 0;
+#main{
+    opacity:0;
+    transition:opacity 2s ease;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-/* Card entry */
-@keyframes cardEntry {
-    0% { opacity: 0; transform: translateY(50px) scale(0.95); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+.card{
+    width:92%;
+    max-width:430px;
+    background:#fffaf0;
+    border-radius:28px;
+    padding:34px 22px 38px;
+    border:2px solid var(--gold);
+    box-shadow:0 30px 60px rgba(0,0,0,.4);
+    text-align:center;
+    position:relative;
 }
 
-/* ================= OM SYMBOL ================= */
-.om {
-    font-size: 42px;
-    color: var(--deep-saffron);
-    margin-bottom: 6px;
-    animation: omGlow 3s infinite alternate;
+/* ================= OM ================= */
+.om{
+    font-size:44px;
+    color:var(--saffron);
+    text-shadow:0 0 18px gold;
+    animation:pulse 3s infinite alternate;
 }
 
-@keyframes omGlow {
-    from { text-shadow: 0 0 8px #ffd27a; }
-    to   { text-shadow: 0 0 20px #ff9f1c; }
+@keyframes pulse{
+    from{text-shadow:0 0 10px gold}
+    to{text-shadow:0 0 26px orange}
 }
 
-/* ================= TITLE ================= */
-h1 {
-    margin: 8px 0 10px;
-    font-size: 24px;
-    color: var(--brown);
-    letter-spacing: 1px;
+/* ================= TITLES ================= */
+h1{
+    font-size:24px;
+    margin:10px 0;
+    color:var(--deep);
 }
 
-/* ================= DIVIDER ================= */
-.divider {
-    width: 120px;
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    margin: 14px auto;
+.divider{
+    width:120px;
+    height:2px;
+    background:linear-gradient(to right,transparent,var(--gold),transparent);
+    margin:14px auto;
 }
 
-/* ================= MANTRA BLOCK ================= */
-.mantra {
-    font-size: 15.5px;
-    line-height: 1.9;
-    color: var(--brown);
-    margin: 18px 0;
-    opacity: 0;
-    animation: mantraReveal 4s ease forwards;
-}
-
-.mantra.delay {
-    animation-delay: 2s;
-}
-
-@keyframes mantraReveal {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ================= DESCRIPTION ================= */
-.description {
-    font-size: 14.5px;
-    line-height: 1.8;
-    color: #5b3600;
-    margin-top: 16px;
+/* ================= MANTRAS ================= */
+.mantra{
+    font-size:15.5px;
+    line-height:1.9;
+    margin:18px 0;
+    color:var(--deep);
+    opacity:0;
+    animation:fadeUp 3s forwards;
+    animation-delay:1s;
 }
 
 /* ================= BUTTON ================= */
-button {
-    margin-top: 22px;
-    padding: 12px 22px;
-    border-radius: 30px;
-    border: none;
-    background: linear-gradient(135deg, #d99b2b, #b36b00);
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-    transition: all 0.4s ease;
+button{
+    margin-top:22px;
+    padding:12px 24px;
+    border-radius:30px;
+    border:none;
+    background:linear-gradient(135deg,#d8a440,#a45b00);
+    color:#fff;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 12px 24px rgba(0,0,0,.3);
+    transition:.4s;
 }
+button:hover{transform:scale(1.08)}
 
-button:hover {
-    transform: scale(1.07);
-    background: linear-gradient(135deg, #eab54e, #c47a00);
-}
-
-/* ================= DETAILS PANEL ================= */
-.details {
-    margin-top: 20px;
-    padding: 18px;
-    border-radius: 18px;
-    background: #fff4db;
-    border: 1px solid var(--gold);
-    display: none;
-    animation: detailsOpen 1s ease forwards;
-}
-
-@keyframes detailsOpen {
-    from { opacity: 0; transform: scale(0.9); }
-    to   { opacity: 1; transform: scale(1); }
-}
-
-.details h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: var(--deep-saffron);
-}
-
-.details p {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--brown);
-}
-
-/* ================= FLOATING PETALS ================= */
-.petal {
-    position: fixed;
-    top: -40px;
-    width: 18px;
-    height: 18px;
-    background: radial-gradient(circle, #ffd27a, #d99b2b);
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
-    }
+.details{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    border-radius:18px;
+    background:#fff2d4;
+    border:1px solid var(--gold);
+    animation:fadeUp 1.2s forwards;
 }
 
 /* ================= DIYA ================= */
-.diya {
-    position: absolute;
-    bottom: -22px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 28px;
-    animation: diyaFlicker 2s infinite alternate;
-}
-
-@keyframes diyaFlicker {
-    from { text-shadow: 0 0 6px orange; }
-    to   { text-shadow: 0 0 18px gold; }
+.diya{
+    position:absolute;
+    bottom:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:28px;
+    text-shadow:0 0 14px orange;
 }
 
 /* ================= FOOTER ================= */
-.footer {
-    margin-top: 18px;
-    font-size: 13px;
-    font-style: italic;
-    color: #7a4b00;
+.footer{
+    margin-top:18px;
+    font-size:13px;
+    font-style:italic;
+    color:#7a4b00;
 }
 
 </style>
@@ -207,69 +183,93 @@ button:hover {
 
 <body>
 
-<!-- Floating petals -->
-<script>
-for(let i=0;i<20;i++){
-    let p=document.createElement("div");
-    p.className="petal";
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=6+Math.random()*6+"s";
-    p.style.opacity=Math.random();
-    document.body.appendChild(p);
-}
-</script>
-
-<div class="card">
-
-    <div class="om">ॐ</div>
-    <h1>यज्ञोपवीत संस्कार</h1>
-    <div class="divider"></div>
-
-    <div class="mantra">
-        ॐ यज्ञोपवीतं परमं पवित्रं<br>
-        प्रजापतेर्यत्सहजं पुरस्तात् ।<br>
-        आयुष्यमग्र्यं प्रतिमुञ्च शुभ्रं<br>
-        यज्ञोपवीतं बलमस्तु तेजः ॥
+<!-- ================= INTRO ================= -->
+<div id="intro">
+    <div class="intro-text">
+        सहस्राब्द्याः परम्परया<br>
+        गुरु-शिष्य-संप्रदायेन
     </div>
-
-    <div class="description">
-        ब्रह्मचर्याश्रमप्रवेशस्य<br>
-        पावनः वैदिकः संस्कारः
+    <div class="intro-text delay">
+        अद्यापि जीवितं संस्कारम् —<br>
+        यज्ञोपवीत संस्कारः
     </div>
-
-    <div class="mantra delay">
-        ॐ गायत्र्यै विद्महे<br>
-        सावित्रीं धीमहि ।<br>
-        तन्नो देवः प्रचोदयात् ॥
-    </div>
-
-    <button onclick="toggleDetails()">संस्कार विवरण देखें</button>
-
-    <div class="details" id="details">
-        <h2>संस्कारार्थी विवरण</h2>
-        <p>
-            नामः — <strong>[बालक का नाम]</strong><br>
-            गोत्रः — <strong>[गोत्र]</strong><br>
-            पिता — <strong>[पिता का नाम]</strong><br>
-            आचार्यः — <strong>[आचार्य नाम]</strong><br>
-            तिथि — <strong>[तिथि]</strong><br>
-            स्थानम् — <strong>[स्थान]</strong>
-        </p>
-    </div>
-
-    <div class="diya">🪔</div>
-
-    <div class="footer">
-        धर्मेण जीवनम् । वेदेन प्रज्ञा ॥
-    </div>
-
 </div>
 
+<!-- ================= MAIN ================= -->
+<div id="main">
+<div class="card">
+
+<div class="om">ॐ</div>
+<h1>यज्ञोपवीत संस्कार</h1>
+<div class="divider"></div>
+
+<div class="mantra">
+ॐ यज्ञोपवीतं परमं पवित्रं<br>
+प्रजापतेर्यत्सहजं पुरस्तात् ।<br>
+आयुष्यमग्र्यं प्रतिमुञ्च शुभ्रं<br>
+यज्ञोपवीतं बलमस्तु तेजः ॥
+</div>
+
+<div class="mantra">
+ॐ गायत्र्यै विद्महे<br>
+सावित्रीं धीमहि ।<br>
+तन्नो देवः प्रचोदयात् ॥
+</div>
+
+<button onclick="toggle()">संस्कारार्थी विवरण</button>
+
+<div class="details" id="details">
+<strong>नामः</strong> — [बालक नाम]<br>
+<strong>गोत्रः</strong> — [गोत्र]<br>
+<strong>पिता</strong> — [पिता नाम]<br>
+<strong>आचार्यः</strong> — [आचार्य नाम]<br>
+<strong>स्थानम्</strong> — [स्थान]
+</div>
+
+<div class="diya">🪔</div>
+
+<div class="footer">
+धर्मेण जीवनम् । वेदेन प्रज्ञा ॥
+</div>
+
+</div>
+</div>
+
+<!-- ================= AUDIO ================= -->
+<audio id="bell" src="https://cdn.pixabay.com/audio/2022/03/15/audio_4b40b02c6a.mp3"></audio>
+<audio id="drone" src="https://cdn.pixabay.com/audio/2022/08/02/audio_7e3c8f9f67.mp3" loop></audio>
+
 <script>
-function toggleDetails(){
-    let d=document.getElementById("details");
-    d.style.display = d.style.display==="block" ? "none" : "block";
+
+/* PARTICLES */
+for(let i=0;i<40;i++){
+ let p=document.createElement("div");
+ p.className="particle";
+ p.style.left=Math.random()*100+"vw";
+ p.style.animationDuration=5+Math.random()*7+"s";
+ document.body.appendChild(p);
 }
+
+/* ENTRY SEQUENCE */
+setTimeout(()=>{
+ document.getElementById("bell").play();
+ document.getElementById("drone").play();
+},800);
+
+setTimeout(()=>{
+ document.getElementById("intro").style.opacity=0;
+},7000);
+
+setTimeout(()=>{
+ document.getElementById("intro").style.display="none";
+ document.getElementById("main").style.opacity=1;
+},9000);
+
+function toggle(){
+ let d=document.getElementById("details");
+ d.style.display=d.style.display==="block"?"none":"block";
+}
+
 </script>
 
 </body>
